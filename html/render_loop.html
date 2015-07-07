@@ -1,0 +1,27 @@
+<div id="render-loop">
+    {% block context_render %}
+        <ul id="vert-nav-bar" style="display:inline-block;
+                                     list-style-type:none;
+                                     margin:0;
+                                     padding:0;
+                                     position:fixed;
+                                     background-color:whitesmoke;
+                                     z-index:1;
+                                     text-align:center ">
+            <li style="color: orange"> DataSets to Click On </li>
+            {% for key, value in context_dict.iteritems() %}
+                <li class={{key}} style="border:1px; border-style:solid; padding:5px;">
+                    {{key}}
+                </li>
+            {% endfor %}
+        </ul>
+        <div class="clear-container"></div>
+        <ul id="dataframe-list" style="list-style-type:none; ">
+            {% for key, value in context_dict.iteritems() %}
+                <li style="display:none;" class={{key}}>
+                {{value.to_html(classes=["tablesorter", key ]) | safe }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endblock %}
+</div>
